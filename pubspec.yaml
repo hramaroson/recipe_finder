@@ -10,9 +10,10 @@ environment:
 
 dependencies:
   flutter:
-    sdk: flutter
+    sdk: flutter 
 
   cupertino_icons: ^1.0.5
+  shared_preferences: ^2.0.17
   cached_network_image: ^3.2.3
   flutter_slidable: ^2.0.0
   platform: ^3.1.0
