@@ -144,6 +144,14 @@ void getPreviousSearches() async {
                 ],
               )),
               PopupMenuButton<String>(
+                icon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: lightGrey,
+                ),
+                onSelected: (String value){
+                  searchTextController.text = value;
+                  startSearch(searchTextController.text);
+                },
                 itemBuilder: (BuildContext context){
                   return previousSearches.map<CustomDropdownMenuItem<String>>(
                     (String value){
@@ -156,7 +164,7 @@ void getPreviousSearches() async {
                               savePreviousSearches();
                               Navigator.pop(context);
                             });
-                          },);
+                          });
                     }).toList();
                 })
           ],
