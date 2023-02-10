@@ -124,34 +124,41 @@ void getPreviousSearches() async {
             const SizedBox(
               width: 6.0,
             ),
-            // *** Start Replace
             Expanded(
               child: Row(
                 children: <Widget>[
                   Expanded(
                     child: TextField(
                       decoration: const InputDecoration(
-                          border: InputBorder.none, hintText: 'Search'),
+                        border: InputBorder.none,
+                        hintText: 'Search',
+                        ),
                       autofocus: false,
+                      textInputAction: TextInputAction.done,
                       controller: searchTextController,
-                      onChanged: (query) => {
-                        if (query.length >= 3) {
-                            // Rebuild list
-                            setState(() {
-                                currentSearchList.clear();
-                                currentCount = 0;
-                                currentEndPosition = pageCount;
-                                currentStartPosition = 0;
-                              },
-                            )
-                          }
+                      onSubmitted: (value){
+                        startSearch(searchTextController.text);
                       },
                     ),
-                  ),
+                  )
                 ],
-              ),
-            ),
-            // *** End Replace
+              )),
+              PopupMenuButton<String>(
+                itemBuilder: (BuildContext context){
+                  return previousSearches.map<CustomDropdownMenuItem<String>>(
+                    (String value){
+                        return CustomDropdownMenuItem<String>(
+                          value: value, 
+                          text: value,
+                          callback: (){
+                            setState(() {
+                              previousSearches.remove(value);
+                              savePreviousSearches();
+                              Navigator.pop(context);
+                            });
+                          },);
+                    }).toList();
+                })
           ],
         ),
       ),
