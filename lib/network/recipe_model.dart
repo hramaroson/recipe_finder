@@ -106,3 +106,11 @@ class APIIngredients{
   Map<String, dynamic> toJson() => _$APIIngredientsToJson(this);
 }
 
+String getCalories(double? calories){
+  if(calories == null){
+    return '0 KCAL';
+  }
+  return '${calories.floor()} KCAL'; 
+
+}
+

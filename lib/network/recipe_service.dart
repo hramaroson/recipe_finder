@@ -14,7 +14,7 @@ class RecipeService{
      }
   }
 
-  Future<dynamic> getRecipes(String query, String from, String to) async{
+  Future<dynamic> getRecipes(String query, int from, int to) async{
     final recipeData = await getData('$apiUrl?'
       'app_id=$apiId&app_key=$apiKey&q=$query&from=$from&to=$to');
 
