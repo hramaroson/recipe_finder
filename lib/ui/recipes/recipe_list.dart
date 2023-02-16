@@ -268,7 +268,7 @@ void getPreviousSearches() async {
         controller: _scrollController,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: itemHeight / itemWidth
+          childAspectRatio: (itemWidth / itemHeight)
         ), 
         itemCount: hits.length,
         itemBuilder: (BuildContext context, int index){
