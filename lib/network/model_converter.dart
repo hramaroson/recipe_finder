@@ -24,7 +24,7 @@ class ModelConverter implements Converter{
 
     return request;
   }
-  Response decodeJson<BodyType, InnerType>(Response response){
+  Response<BodyType> decodeJson<BodyType, InnerType>(Response response){
     final contentType = response.headers[contentTypeKey];
     var body = response.body;
 
