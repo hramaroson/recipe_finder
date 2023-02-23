@@ -29,7 +29,7 @@ abstract class RecipeService extends ChopperService{
   
   static RecipeService create(){
     final client = ChopperClient(
-      baseUrl: Uri(path: apiUrl),
+      baseUrl: Uri.parse(apiUrl),
       interceptors: [_addQuery, HttpLoggingInterceptor()],
       converter: ModelConverter(),
       errorConverter: const JsonConverter(),
