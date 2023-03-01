@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../data/models/models.dart';
 
 import '../colors.dart';
 
 class RecipeDetails extends StatelessWidget {
-  const RecipeDetails({Key? key}) : super(key: key);
+  final Recipe recipe;
+  const RecipeDetails({
+    Key? key,
+    required this.recipe}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
