@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../data/models/models.dart';
 
+import '../../network/recipe_model.dart';
 import '../colors.dart';
 
 class RecipeDetails extends StatelessWidget {
@@ -12,6 +14,7 @@ class RecipeDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -24,11 +27,11 @@ class RecipeDetails extends StatelessWidget {
                   children: [
                     Align(
                       alignment: Alignment.topLeft,
-                      // TODO 1
-                      child: Image.asset(
-                        'assets/images/pizza_w700.png',
-                        height: 200,
-                        width: 200,
+                      child: CachedNetworkImage(
+                        imageUrl: recipe.image ?? '',
+                        alignment: Alignment.topLeft,
+                        fit: BoxFit.fill,
+                        width: size.width,
                       ),
                     ),
                     Align(
@@ -46,23 +49,24 @@ class RecipeDetails extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 16.0),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
                   child: Text(
-                    // TODO 2
-                    'Chicken Vesuvio',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    recipe.label ?? '',
+                    style: const TextStyle(
+                      fontSize: 22, 
+                      fontWeight: FontWeight.bold
+                    ),
                   ),
                 ),
                 const SizedBox(
                   height: 16,
                 ),
-                const Padding(
-                    padding: EdgeInsets.only(left: 16.0),
-                    child: Chip(
-                      // TODO 3
-                      label: Text('16CAL'),
-                    )),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Chip(
+                    label: Text(getCalories(recipe.calories)),
+                  )),
                 const SizedBox(
                   height: 16,
                 ),
