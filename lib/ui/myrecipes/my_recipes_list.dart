@@ -1,5 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
+import '../../data/memory_repository.dart';
+import '../../data/models/recipe.dart';
 
 class MyRecipesList extends StatefulWidget {
   const MyRecipesList({Key? key}) : super(key: key);
@@ -10,14 +14,7 @@ class MyRecipesList extends StatefulWidget {
 
 class _MyRecipesListState extends State<MyRecipesList> {
   // TODO 1
-  List<String> recipes = [];
-
-  // TODO 2
-  @override
-  void initState() {
-    super.initState();
-    recipes = <String>[];
-  }
+  List<Recipe> recipes = [];
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +25,13 @@ class _MyRecipesListState extends State<MyRecipesList> {
   }
 
   Widget _buildRecipeList(BuildContext context) {
-    // TODO 3
-    return ListView.builder(
+    return Consumer<MemoryRepository>(builder: (context, repository, child){
+      recipes = repository.findAllRecipes();
+      return ListView.builder(
         itemCount: recipes.length,
         itemBuilder: (BuildContext context, int index) {
-          // TODO 4
+          final recipe = recipes[index];
+
           return SizedBox(
             height: 100,
             child: Slidable(
@@ -75,21 +74,27 @@ class _MyRecipesListState extends State<MyRecipesList> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
-                      // TODO 5
-                      leading: Image.asset(
-                        'assets/images/pizza_w700.png',
-                        height: 200,
-                        width: 200,
+                      leading: CachedNetworkImage(
+                        imageUrl: recipe.image ?? '',
+                        height: 120,
+                        width: 60,
+                        fit: BoxFit.cover,
                       ),
-                      // TODO 6
-                      title: const Text('Chicken Vesuvio'),
+                      title: Text(recipe.label ?? ''),
                     ),
                   ),
                 ),
               ),
              ),
           );
-        });
-    // TODO 9
+        }
+      );
+    });
+  }
+
+  void deleteRecipe(MemoryRepository repository, Recipe recipe) async {
+    repository.deleteRecipe(recipe);
+    setState(() {
+    });
   }
 }
