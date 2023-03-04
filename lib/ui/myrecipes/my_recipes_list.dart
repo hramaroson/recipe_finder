@@ -13,7 +13,6 @@ class MyRecipesList extends StatefulWidget {
 }
 
 class _MyRecipesListState extends State<MyRecipesList> {
-  // TODO 1
   List<Recipe> recipes = [];
 
   @override
@@ -44,8 +43,10 @@ class _MyRecipesListState extends State<MyRecipesList> {
                     backgroundColor: Colors.transparent,
                     foregroundColor: Colors.black,
                     icon: Icons.delete,
-                    // TODO 7
-                    onPressed: (context) {},
+                   
+                    onPressed: (context) {
+                      deleteRecipe(repository, recipe);
+                    },
                   ),
                 ],
               ),
@@ -58,8 +59,10 @@ class _MyRecipesListState extends State<MyRecipesList> {
                     backgroundColor: Colors.transparent,
                     foregroundColor: Colors.black,
                     icon: Icons.delete,
-                    // TODO 8
-                    onPressed: (context) {},
+                 
+                    onPressed: (context) {
+                       deleteRecipe(repository, recipe);
+                    },
                   ),
                 ],
               ),
