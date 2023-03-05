@@ -97,7 +97,6 @@ class _MyRecipesListState extends State<MyRecipesList> {
 
   void deleteRecipe(MemoryRepository repository, Recipe recipe) async {
     repository.deleteRecipe(recipe);
-    setState(() {
-    });
-  }
+    //setState(() {});
+  } 
 }
