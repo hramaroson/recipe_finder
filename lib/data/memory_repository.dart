@@ -35,8 +35,17 @@ class MemoryRepository extends Repository with ChangeNotifier{
 
   @override
   int insertRecipe(Recipe recipe){
+    //Create recipe unique interger Id
+    final recipeId = UniqueKey().hashCode; 
+    recipe.id = recipeId;
+
     _currentRecipes.add(recipe);
+
     if(recipe.ingredients !=null){
+      for(final ingredient in recipe.ingredients!){
+        ingredient.recipeId = recipeId;
+      }
+
       insertIngredients(recipe.ingredients!);
     }
     notifyListeners();
