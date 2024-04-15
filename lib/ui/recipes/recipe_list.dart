@@ -214,7 +214,8 @@ void getPreviousSearches() async {
           return Center(
             child: Text(
               snapshot.error.toString(),
-              textAlign: TextAlign.center, textScaleFactor: 1.3),
+              textAlign: TextAlign.center, 
+              textScaler: const TextScaler.linear(1.3)),
           );
         }
         loading = false;
