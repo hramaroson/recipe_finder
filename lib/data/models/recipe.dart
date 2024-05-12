@@ -43,7 +43,7 @@ class Recipe extends Equatable{
     totalTime: json['totalTime']
   );
 
-  Map<String, dynamic> fromJson() => {
+  Map<String, dynamic> toJson() => {
     'recipeId' : id,
     'label': label,
     'image': image,
