@@ -166,7 +166,7 @@ class DatabaseHelper{
     );
   }
 
-  Future<int> insertIngredients(Ingredient ingredient) async {
+  Future<int> insertIngredient(Ingredient ingredient) async {
     return insert(
       ingredientTable, 
       ingredient.toJson()
